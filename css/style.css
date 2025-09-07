@@ -1,0 +1,32 @@
+:root{
+  --bg:#0b0f14; --fg:#e8f0ff; --accent:#65d1ff; --accent2:#ff6bd6; --warn:#ff4d4d;
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #223}
+.topbar h1{margin:0;font-size:18px}
+.topbar small{color:#9ab}
+.controls{display:flex;gap:8px;align-items:center}
+.stage{display:grid;grid-template-columns: minmax(320px,420px) 1fr;gap:16px;padding:12px}
+.playfield{display:flex;gap:12px}
+.hud{display:flex;flex-direction:column;gap:10px}
+.panel{background:#111a24;border:1px solid #223;border-radius:12px;padding:8px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.panel h3{margin:0 0 6px 0;font-size:12px;color:#9fd}
+.gauge{width:100px;height:12px;background:#233;border-radius:6px;overflow:hidden;border:1px solid #345}
+#gaugeFill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.opponent{position:relative}
+.cpuLabel{position:absolute;top:6px;left:6px;background:#111a24;border:1px solid #223;border-radius:6px;padding:2px 6px;font-size:12px;color:#9ab}
+.hint{padding:6px 12px;color:#9ab;border-top:1px solid #223}
+
+/* Canvas styling */
+canvas{background:#0d1723;border:1px solid #244;border-radius:10px;image-rendering:pixelated}
+
+/* Cut-in */
+.cutin{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:rgba(0,0,0,.35);z-index:50}
+.cutin img{max-width:60vw;max-height:60vh;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+.hidden{display:none}
+
+/* Responsive */
+@media (max-width:900px){
+  .stage{grid-template-columns: 1fr}
+  .playfield{flex-direction:row}
+}
