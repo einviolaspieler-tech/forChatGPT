@@ -1,4 +1,5 @@
 import { COLORS } from './config.js';
+import { rnd } from './math.js';
 
 // Shapes in 4 rotation states (0,1,2,3)
 const SHAPES = {
@@ -43,17 +44,12 @@ const SHAPES = {
     [[1,0],[1,1],[1,2],[2,2]],
     [[0,1],[1,1],[2,1],[0,2]],
     [[0,0],[1,0],[1,1],[1,2]],
-  ],
-  G: [ // gauge item piece (acts as O but different color)
-    [[1,0],[2,0],[1,1],[2,1]],
-    [[1,0],[2,0],[1,1],[2,1]],
-    [[1,0],[2,0],[1,1],[2,1]],
-    [[1,0],[2,0],[1,1],[2,1]],
   ]
 };
 
-export function makePiece(type){
-  return { type, rot:0, x:3, y:0, color: COLORS[type]||'#ccc' };
+// hasItem=true のときだけ itemIdx に 0..3 を入れる。初期y=2でスポーンして見えるように。
+export function makePiece(type, hasItem=false){
+  return { type, rot:0, x:3, y:2, color: COLORS[type]||'#ccc', itemIdx: hasItem ? rnd(4) : -1 };
 }
 
 export function getBlocks(piece){
@@ -61,6 +57,5 @@ export function getBlocks(piece){
 }
 
 export function rotated(piece, dir){
-  const p = { ...piece, rot: (piece.rot + (dir||1) + 4) % 4 };
-  return p;
+  return { ...piece, rot: (piece.rot + (dir||1) + 4) % 4 };
 }
